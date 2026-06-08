@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
 
@@ -9,11 +9,19 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            props.navigation.navigate('TabNavigator')
+        }
+    })
+  }, [])
+
   function onSubmit() { 
 
     auth.signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log("El Lgin fue exitoso");
+        console.log("El Login fue exitoso");
         props.navigation.navigate('NavigationTab');
       })
 
@@ -60,3 +68,4 @@ function Login(props) {
 }
 
 export default Login;
+
