@@ -1,7 +1,12 @@
-import {db, auth} from "../firebase/config";
-import firebase from "firebase";
+import React, { useState } from "react";
+import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { db, auth } from "../firebase/config"; 
 
-function actualizarDatos(idDelDocumentoAModificar, likes){
-    const emailUsuario = auth.currentUser.email
-    
+function Post(props){
+    return(
+        <View>
+            <Text>{props.data.email}</Text>
+            <Text>{props.data.descripcionPost}</Text>
+        </View>
+    )
 }
