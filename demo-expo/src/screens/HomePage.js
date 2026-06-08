@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, FlatList } from "react-native";
 import { db, auth } from "../firebase/config"; 
+import Post from "../components/Post"
 
 function HomePage () {
     const [postep, setPosteo] = useState([]);
@@ -18,6 +19,7 @@ function HomePage () {
         })
 
     }, []);
+
     return(
         <View>
             <Text>home</Text>

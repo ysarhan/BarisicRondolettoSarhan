@@ -10,3 +10,5 @@ function Post(props){
         </View>
     )
 }
+
+export default Post

@@ -70,4 +70,4 @@ function Register(props) {
   );
 }
 
-export default Registro;
+export default Registro
