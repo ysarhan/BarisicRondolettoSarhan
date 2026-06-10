@@ -12,7 +12,7 @@ function Login(props) {
   useEffect(() => {
     auth.onAuthStateChanged(user => {
         if (user) {
-            props.navigation.navigate('TabNavigator')
+            props.navigation.navigate('NavigationTab')
         }
     })
   }, [])
@@ -31,12 +31,11 @@ function Login(props) {
   }
 
   return (
-    <View style={styles.container}>
+    <View>
 
-      <Text style={styles.title}>Login</Text>
+      <Text>Login</Text>
 
       <TextInput
-        style={styles.field}
         placeholder="Email"
         keyboardType="email-address"
         onChangeText={text => setEmail(text)}
@@ -44,7 +43,6 @@ function Login(props) {
       />
 
       <TextInput
-        style={styles.field}
         placeholder="Contraseña"
         keyboardType="default"
         secureTextEntry={true}
@@ -52,14 +50,14 @@ function Login(props) {
         value={password}
       />
 
-      <Text style={styles.error}> {error}</Text>
+      <Text> {error}</Text>
 
-      <Pressable style={styles.button} onPress={() => onSubmit()}>
-        <Text style={styles.buttonTexto}>Ingresar</Text>
+      <Pressable onPress={() => onSubmit()}>
+        <Text>Ingresar</Text>
       </Pressable>
 
       <Pressable onPress={() => props.navigation.navigate('Registro')}>
-        <Text style={styles.link}>Registrate!</Text>
+        <Text>Registrate!</Text>
       </Pressable>
 
     

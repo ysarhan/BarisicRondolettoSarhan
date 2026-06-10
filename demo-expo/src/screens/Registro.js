@@ -2,7 +2,7 @@
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
 
-function Register(props) {
+function Registro (props) {
 
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
@@ -26,12 +26,11 @@ function Register(props) {
   }
 
   return (
-    <View style={styles.container}>
+    <View>
 
-      <Text style={styles.title}>Registro</Text>
+      <Text>Registro</Text>
 
       <TextInput
-        style={styles.field}
         placeholder="Nombre de usuario"
         keyboardType="default"
         onChangeText={text => setUsername(text)}
@@ -39,7 +38,6 @@ function Register(props) {
       />
 
       <TextInput
-        style={styles.field}
         placeholder="Email"
         keyboardType="email-address"
         onChangeText={text => setEmail(text)}
@@ -47,22 +45,21 @@ function Register(props) {
       />
 
       <TextInput
-        style={styles.field}
         placeholder="Contraseña"
         keyboardType="default"
         secureTextEntry={true}
         onChangeText={text => setContraseña(text)}
-        value={password}
+        value={contraseña}
       />
 
-      <Text style={styles.error}> {error}</Text>
+      <Text> {error}</Text>
 
-      <Pressable style={styles.button} onPress={() => onSubmit()}>
-        <Text style={styles.buttonText}>Registrarse</Text>
+      <Pressable onPress={() => onSubmit()}>
+        <Text>Registrarse</Text>
       </Pressable>
 
       <Pressable onPress={() => props.navigation.navigate("Login")}>
-        <Text style={styles.link}>Inicia sesión</Text>
+        <Text>Inicia sesión</Text>
       </Pressable>
 
   

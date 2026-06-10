@@ -3,8 +3,9 @@ import { View, Text, TextInput, Pressable, StyleSheet, FlatList } from "react-na
 import { db, auth } from "../firebase/config"; 
 import Post from "../components/Post"
 
-function HomePage () {
-    const [postep, setPosteo] = useState([]);
+
+function HomePage (props) {
+    const [posteo, setPosteo] = useState([]);
 
     useEffect(()=> {
         db.collection("posts").onSnapshot(docs => {
@@ -12,7 +13,7 @@ function HomePage () {
             docs.forEach(doc => {
                 posts.push({
                     id: doc.id,
-                    data: doc.data
+                    data: doc.data()
                 })
             })
             setPosteo(posts);
@@ -21,15 +22,35 @@ function HomePage () {
     }, []);
 
     return(
-        <View>
-            <Text>home</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>home</Text>
             <FlatList 
-                data={posteos}
+                data={posteo}
                 keyExtractor={(item) => item.id}
-                renderItem={({item}) => <Post data={item.data}/>}
+                renderItem={({item}) => 
+                    <Post 
+                        data={item.data}
+                        id = {item.id}
+                        navigation={props.navigation}
+                        />}
+                
             />
         </View>
     )
 }
 
 export default HomePage
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1, 
+        backgroundColor: "#f7f4fb", 
+        padding: 15
+    },
+    title: {
+        fontSize: 26,
+        fontWeight: "700",
+        color: "#4b2e83",
+        marginBottom: 15
+    }
+})
