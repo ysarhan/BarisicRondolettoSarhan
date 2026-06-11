@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, FlatList } from "react-native";
 import { auth, db} from "../firebase/config"
+import Post from "../components/Post"
+
 
 function MiPerfil (props){
     const [usuario, setUsuario] = useState(null);
@@ -57,11 +59,13 @@ function MiPerfil (props){
                 style={styles.post}
                 data={misPosts}
                 keyExtractor={(item) => item.id}
-                renderItem={({item}) => (
-                    <View>
-                        <Text style={styles.texto}>{item.data.descripcionPost}</Text>
-                    </View>
-                )}
+                renderItem={({item}) => 
+                    <Post 
+                        data={item.data}
+                        id = {item.id}
+                        navigation={props.navigation}
+                    />
+                }
             />
             <Pressable style={styles.boton} onPress={logout}>
                 <Text style={styles.textoboton}>logout</Text>
@@ -97,9 +101,9 @@ const styles = StyleSheet.create({
         color: "#333"
     },
     post: {
-        backgroundColor: "#fff",
+        backgroundColor: "#ffffffa1",
         borderWidth: 1, 
-        borderColor: "#e0d7f3",
+        borderColor: "#6a0dad",
         borderRadius: 8, 
         padding: 10, 
         marginBottom: 10

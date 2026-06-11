@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         padding: 15, 
         marginBottom: 12, 
         borderWidth: 1, 
-        borderColor: "e0d7f3"
+        borderColor: "#6a0dad"
     },
     email: {
         fontWeight: "700", 

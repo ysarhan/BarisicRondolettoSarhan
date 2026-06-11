@@ -32,8 +32,8 @@ function HomePage (props) {
                         data={item.data}
                         id = {item.id}
                         navigation={props.navigation}
-                        />}
-                
+                    />
+                }  
             />
         </View>
     )

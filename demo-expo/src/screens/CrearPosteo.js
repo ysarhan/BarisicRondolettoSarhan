@@ -5,7 +5,7 @@ import { db, auth } from "../firebase/config";
 function CrearPosteo() {
     const [descripcionPost, setDescripcionPost] = useState(""); 
 
-    function crearPost() {
+    function crearPost(props) {
         db.collection("posts").add({
             createdAt: Date.now(),
             email: auth.currentUser.email,
@@ -14,6 +14,7 @@ function CrearPosteo() {
         })
         .then(() => {
             setDescripcionPost("");
+            props.navigation.navigate("HomePage")
         })
         .catch((error) => console.log(error));
     }
@@ -27,7 +28,7 @@ function CrearPosteo() {
                 value={descripcionPost}
                 onChangeText={(texto) => setDescripcionPost(texto)}
             />
-            <Pressable style={styles.boton} onPress={crearPost}>
+            <Pressable style={styles.boton} onPress={() => crearPost()}>
                 <Text style={styles.textoboton}>publicar</Text>
             </Pressable>
         </View>

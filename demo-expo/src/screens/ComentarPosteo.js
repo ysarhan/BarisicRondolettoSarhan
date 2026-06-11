@@ -7,50 +7,44 @@ function ComentarPosteo (props){
     const [comentarios, setComentarios] = useState([]);
 
     useEffect(() => {
-        db.collection("comentarios").onSnapshot(docs => {
+        db.collection("comentarios").where("postId","==",props.route.params.id).onSnapshot(
+            docs => {
             let comentariosTraidos = [];
 
             docs.forEach(doc => {
-                let comentariosTraidos = [];
 
-                if (data.postId === idPost) {
                     comentariosTraidos.push({
                         id: doc.id,
-                        data: data
+                        data: doc.data()
                     });
                 }
-            });
+            );
 
             setComentarios(comentariosTraidos);
         })
     }, []);
 
+    
+console.log(props);
+
     function agregarComentario(){
+
         db.collection("comentarios").add({
-            postId: idPost, 
+            postId: props.route.params.id, 
             email: auth.currentUser.email, 
             texto: comentario,
             createdAt: Date.now()
         })
         .then(() => {
             setComentario("");
+            props.navigation.navigate("HomePage")
         })
         .catch(error => console.log(error));
     }
 
     return(
         <View style={styles.container}>
-            <Text style={styles.titulo}>comentar posteo</Text>
-            <TextInput 
-                style={styles.input}
-                placeholder="escribi un comentario"
-                value={comentario}
-                onChangeText={(texto) => setComentario(texto)}
-            />
-            <Pressable style={styles.boton} onPress={agregarComentario}>
-                <Text style={styles.textoBoton}>publicar comentario</Text>
-            </Pressable>
-
+            <Text style={styles.titulo}>comentarios</Text>
             <FlatList
                 data={comentarios}
                 keyExtractor={(item) => item.id}
@@ -61,6 +55,16 @@ function ComentarPosteo (props){
                     </View>
                 )}
             />
+            <Text style={styles.titulo}>comentar posteo</Text>
+            <TextInput 
+                style={styles.input}
+                placeholder="escribi un comentario"
+                value={comentario}
+                onChangeText={(texto) => setComentario(texto)}
+            />
+            <Pressable style={styles.boton} onPress={() => agregarComentario()}>
+                <Text style={styles.textoBoton}>publicar comentario</Text>
+            </Pressable>
         </View>
     )
 }
