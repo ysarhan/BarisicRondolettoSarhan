@@ -26,25 +26,25 @@ function Registro (props) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
 
-      <Text>Registro</Text>
+      <Text style={styles.title}>Registro</Text>
 
-      <TextInput
+      <TextInput style={styles.espacio}
         placeholder="Nombre de usuario"
         keyboardType="default"
         onChangeText={text => setUsername(text)}
         value={username}
       />
 
-      <TextInput
+      <TextInput style={styles.espacio}
         placeholder="Email"
         keyboardType="email-address"
         onChangeText={text => setEmail(text)}
         value={email}
       />
 
-      <TextInput
+      <TextInput style={styles.espacio}
         placeholder="Contraseña"
         keyboardType="default"
         secureTextEntry={true}
@@ -52,14 +52,14 @@ function Registro (props) {
         value={contraseña}
       />
 
-      <Text> {error}</Text>
+      <Text style={styles.error}> {error}</Text>
 
-      <Pressable onPress={() => onSubmit()}>
-        <Text>Registrarse</Text>
+      <Pressable style={styles.boton}  onPress={() => onSubmit()}>
+        <Text style={styles.registrarse}>Registrarse</Text>
       </Pressable>
 
       <Pressable onPress={() => props.navigation.navigate("Login")}>
-        <Text>Inicia sesión</Text>
+        <Text style={styles.link}>Inicia sesión</Text>
       </Pressable>
 
   
@@ -68,3 +68,49 @@ function Registro (props) {
 }
 
 export default Registro
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    backgroundColor: "#f7f4fb", 
+    padding: 15
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: "700",
+    color: "#4b2e83",
+    marginBottom: 40,
+    textAlign: 'center'
+  },
+    espacio: {
+    fontSize: 15,
+    borderWidth: 1.5,
+    borderColor: "#4b2e83",
+    backgroundColor: "#c0b5cf",
+    borderRadius: 7,
+    padding: 10,
+    marginBottom: 20,
+  },
+boton: {
+    backgroundColor: "#c0b5cf",
+    padding: 15,
+    marginBottom: 20,
+    borderRadius: 7
+  },
+  registrarse: {
+    color:  "#4b2e83",
+    fontSize: 20,
+    fontWeight: "700",
+    textAlign: 'center'
+  },
+  link: {
+    textAlign: "center",
+    textDecorationLine: 'underline',
+    color:  "#311b5d",
+  },
+  error: {
+    color: "red",
+    textAlign: "center",
+    margin: 10
+  }
+})
