@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { db, auth } from "../firebase/config"; 
 
-function CrearPosteo() {
+function CrearPosteo(props) {
     const [descripcionPost, setDescripcionPost] = useState(""); 
 
-    function crearPost(props) {
+    function crearPost() {
         db.collection("posts").add({
             createdAt: Date.now(),
             email: auth.currentUser.email,
@@ -14,7 +14,7 @@ function CrearPosteo() {
         })
         .then(() => {
             setDescripcionPost("");
-            props.navigation.navigate("HomePage")
+            props.navigation.navigate("Home")
         })
         .catch((error) => console.log(error));
     }

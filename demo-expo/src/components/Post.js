@@ -41,7 +41,7 @@ function Post(props){
             <View style={styles.contenedorAcciones}>
                 <Pressable onPress={usuarioYaLikeado ? sacarLike : darLike}>
                     <Text style={[styles.textoMeGusta, usuarioYaLikeado && styles.textoLikeado]}>
-                        Me Gusta
+                        {usuarioYaLikeado ? "♥ Dislike" : "♡ Like"}
                     </Text>
                 </Pressable>
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     email: {
         fontWeight: "700", 
-        color: "#4b2e83",
+        color: "#5d2ebb",
         marginBottom: 6
     }, 
     descripcion: {
@@ -78,9 +78,8 @@ const styles = StyleSheet.create({
 
     contadorLikes:{
         fontSize: 13,
-        color: "#c599e4",
+        color: "#9347c9",
         fontWeight: "500",
-        marginBottom: 12
 
     },
 
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
     },
 
     textoLikeado: {
-        color: "#a61a8f",
+        color: "#d3091a",
         fontWeight: "700"
     },
 

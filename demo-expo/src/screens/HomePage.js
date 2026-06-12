@@ -8,14 +8,16 @@ function HomePage (props) {
     const [posteo, setPosteo] = useState([]);
 
     useEffect(()=> {
-        db.collection("posts").onSnapshot(docs => {
-            let posts = [];
-            docs.forEach(doc => {
-                posts.push({
-                    id: doc.id,
-                    data: doc.data()
+        db.collection("posts")
+            .orderBy("createdAt", "desc")
+            .onSnapshot(docs => {
+                let posts = [];
+                docs.forEach(doc => {
+                    posts.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
                 })
-            })
             setPosteo(posts);
         })
 
