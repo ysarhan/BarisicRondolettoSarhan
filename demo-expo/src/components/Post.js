@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { db, auth } from "../firebase/config"; 
 import firebase from "firebase";
@@ -23,7 +23,7 @@ function Post(props){
         db.collection("posts")
         .doc(props.id)
         .update({
-            likes: firebase.firestore.FieldValue.arrayRemove(ActionSheetIOS.currentUser.email)
+            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
         .catch(error => console.log ("Error al sacar el like", error))
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
 
-    contadroLikes:{
+    contadorLikes:{
         fontSize: 13,
         color: "#c599e4",
         fontWeight: "500",
